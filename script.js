@@ -7,8 +7,27 @@ generateBtn.addEventListener("click", startQuestions);
 
 // global variables
 var trueAnswers = ["answer 1", "answer 2", "answer 3", "answer 4", "answer 5"]
+var timer;
+var count = 75;
+var displayTime = document.getElementById("display-time")
+// (this timer is found in activity 8)
 
-function startQuestions()
+clearInterval(timer)
+
+function startQuestions() {
+    var startScreenEl = document.getElementById("start-screen")
+    startScreenEl.setAttribute("class", "hide")
+    var questionsEl = document.getElementById("quiz")
+    questionsEl.setAttribute("class", "show")
+    timer = setInterval(function() {
+        displayTime.textContent = count
+        count--
+        if(count===0) {
+            clearInterval(timer)
+            writeHighScore();
+        }
+    }, 1000)
+}
 
 // document.createElement('h1') = question1
 // document.createElement('button1') = answer1
@@ -36,7 +55,7 @@ quiz[i]
 
 // function
 function submitAnswer(ans) {
-    if (trueAnswers[]) {
+    if (trueAnswers.includes(ans)) {
         // if answer === right then next question
     } else {
     // if answer === wrong then timer - 5 seconds then next question (count minus 5 seconds)
@@ -48,15 +67,15 @@ function submitAnswer(ans) {
 // SUBMIT NEVER CHANGES
 
 // timer
-var countdown = function(time) {
-    for (var i = time; i > 0; i--) {
-        if (i === 0) {
-            clearInterval;
-        } else {
-        return (i);
-        }
-    }
-}
+// var countdown = function(time) {
+//     for (var i = time; i > 0; i--) {
+//         if (i === 0) {
+//             clearInterval;
+//         } else {
+//         return (i);
+//         }
+//     }
+// }
 // count variable = 75 sec - (initialized at the start of each run/quiz - could be 75 sec for instance)
 // if count === 0 stop timer (clearInterval())
 
@@ -71,18 +90,8 @@ var countdown = function(time) {
 let arrObj = JSON.parse(localStorage.getItem('highScore')) || [];
 
 
-count = 75;
-// (this timer is found in activity 8)
-const timer = setInterval(function() {
-    count--
-    if(count===0) {
-        clearInterval(timer)
-        writeHighScore();
-    }
-}, 1000)
 
-clearInterval(timer)
-
+// very end
 let playerScore = {
     initials: document.getElementById('initials').nodeValue,
     score: count
