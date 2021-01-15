@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>JavaScript Quiz</title>
     <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
     <div id ="time-div">
-        Time: <span id ="display-time"></span>
+        Time: <span id ="display-time"></span> 
     </div>
     <div id ="start-screen" class="show">
         <h2>JavaScript Quiz</h2>
@@ -16,14 +16,19 @@
     </div>
     <div id="quiz" class="hide">
         <h1 id="question"></h1>
-        <button id="answer1"></button>
-        <button id="answer2"></button>
-        <button id="answer3"></button>
-        <button id="answer4"></button>
+        <button id="answer1" class="ans"></button>
+        <button id="answer2" class="ans"></button>
+        <button id="answer3" class="ans"></button>
+        <button id="answer4" class="ans"></button>
+
+        <div>
+            Score: <span id="current-score"></span>
+        </div>
     </div>
+    <div id="final-score"></div>
     <div></div>
     <div></div>
-    
+    <script src="questions.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

@@ -1,107 +1,145 @@
-// Home Page
-// <div id="container">
-// start button
-var generateBtn = document.querySelector("#start");
-// add event listener on start
-generateBtn.addEventListener("click", startQuestions);
-
-// global variables
-var trueAnswers = ["answer 1", "answer 2", "answer 3", "answer 4", "answer 5"]
+var currentQuestion = 0;
+var score = 0;
+var totalQuestions = questions.length;
 var timer;
 var count = 75;
 var displayTime = document.getElementById("display-time")
-// (this timer is found in activity 8)
 
-clearInterval(timer)
+var startScreenEl = document.getElementById("start-screen");
+var questionsEl = document.getElementById("quiz");
+var displayQuestion = document.getElementById("question");
+var ans1 = document.getElementById("answer1");
+var ans2 = document.getElementById("answer2");
+var ans3 = document.getElementById("answer3");
+var ans4 = document.getElementById("answer4");
+var currentScore = document.getElementById("current-score")
+var endScore = document.getElementById("final-score");
+var generateBtn = document.getElementById("start");
 
-function startQuestions() {
-    var startScreenEl = document.getElementById("start-screen")
-    startScreenEl.setAttribute("class", "hide")
-    var questionsEl = document.getElementById("quiz")
+
+clearInterval(timer);
+
+function setStage() {
+    startScreenEl.setAttribute("class", "hide");
     questionsEl.setAttribute("class", "show")
-    timer = setInterval(function() {
-        displayTime.textContent = count
-        count--
-        if(count===0) {
-            clearInterval(timer)
-            writeHighScore();
+    timer = setInterval(function () {
+        displayTime.textContent = count;
+        count--;
+        if (count === 0) {
+            clearInterval(timer);
+            // writeHighScore();
         }
     }, 1000)
-}
-
-// document.createElement('h1') = question1
-// document.createElement('button1') = answer1
-// document.createElement('button2') = answer2
-// document.createElement('button3') = answer3
-// document.createElement('button4') = answer4
-// function that rewrites questions and answers
-// QUESTIONS AND ANSWERS CHANGE
-quiz = [
-    {
-        q: 'How to do?',
-        1: 'no',
-        2: 'yes',
-        3: 'hello',
-        4: 'yes',
-        5: 'no'
-    }
-]
-
-let i = 0;
-quiz[i]
-
-// document.createElement('submit') = submit
-
-
-// function
-function submitAnswer(ans) {
-    if (trueAnswers.includes(ans)) {
-        // if answer === right then next question
-    } else {
-    // if answer === wrong then timer - 5 seconds then next question (count minus 5 seconds)
-    }
-}
-
-// if lastAnswer then allow saving of high score and initials
-// i++
-// SUBMIT NEVER CHANGES
-
-// timer
-// var countdown = function(time) {
-//     for (var i = time; i > 0; i--) {
-//         if (i === 0) {
-//             clearInterval;
-//         } else {
-//         return (i);
-//         }
-//     }
-// }
-// count variable = 75 sec - (initialized at the start of each run/quiz - could be 75 sec for instance)
-// if count === 0 stop timer (clearInterval())
-
-// then allow them to save initials and score
-// initials require input
-
-// localstorage to save initials and score and display initials and score
-
-// when initials and score are saved display initials and score
-// button to jump to high scores from start page
-
-let arrObj = JSON.parse(localStorage.getItem('highScore')) || [];
-
-
-
-// very end
-let playerScore = {
-    initials: document.getElementById('initials').nodeValue,
-    score: count
 };
 
-arrObj.push(playerScore)
+function startQuestions(questionIndex) {
+    var runQuestions = questions[questionIndex];
+    // console.log(runQuestions);
+    displayQuestion.textContent = (questionIndex + 1) + '. ' + runQuestions.question;
+    // console.log(displayQuestion);
+    ans1.textContent = runQuestions.choice1;
+    ans2.textContent = runQuestions.choice2;
+    ans3.textContent = runQuestions.choice3;
+    ans4.textContent = runQuestions.choice4;
+    // console.log(ans1);
+    // console.log(ans2);
+    // console.log(ans3);
+    // console.log(ans4);
+};
 
-localStorage.setItem('highScore', JSON.stringify(arrObj))
+var selectedOption = "";
+let btns = document.querySelectorAll('button.ans');
+
+for (i of btns) {
+    i.addEventListener('click', function () {
+        selectedOption = this.innerHTML;
+        console.log(selectedOption);
+        updateScore();
+    });
+}
+
+function loadNextQuestion() {
+    
+    startQuestions(currentQuestion);
+}
+
+
+function updateScore() {
+    // console.log(questions[currentQuestion]);
+    if (questions[currentQuestion].answer == selectedOption) {
+        score += 10;
+        currentScore.textContent = score;
+        console.log(score);
+
+    }
+    // selectedOption.checked = false;
+    if (currentQuestion == totalQuestions - 1) {
+        nextButton.textContent = 'Finish';
+    }
+    if (currentQuestion == totalQuestions) {
+        endScore.style.display = 'none';
+        resultCont.style.display = '';
+        resultCont.textContent = 'Your Score: ' + score;
+        return;
+    }
+    currentQuestion++;
+    loadNextQuestion();
+}
+console.log(score);
+console.log(totalQuestions);
+// startQuestions(currentQuestion);
+
+
+
+loadNextQuestion();
+// add event listener on start
+generateBtn.addEventListener("click", setStage);
 
 
 
 
-// ***** should have a minimum of 5 questions - display 1 question at a time
+
+
+
+//     for (var i = 0; i < questions.length; i++) {
+//         // var displayQuestion = document.getElementById("question")
+//         displayQuestion = (questions[i].title);
+//         // console.log(displayQuestion);
+//         // if (askQuestion == questions[i].answer) {
+//             // score++;var startQ = questions[i];
+//         // console.log(startQ);
+
+
+//         displayQuestion.textContent = (displayQuestion[i]);
+//         console.log(displayQuestion);
+//         // }    
+//         ans1.textContent = questions[i].choices[i];
+//         console.log(ans1);
+//         // ans2.textContent = questions[i].choices[1];
+//         // ans3.textContent = questions[i].choices[2];
+//         // ans4.textContent = questions[i].choices[3];        
+//     }
+// };
+
+// var selectedOption = document.querySelector('input[type=button]:onclick');
+
+
+
+
+// var listenForAnswer = document.querySelectorAll("button[type=button]")
+// console.log(listenForAnswer);
+
+// // for (var i = 0; i < listenForAnswer.length; i++) {
+// listenForAnswer.forEach.addEventListener("click", toNextQuestion);
+// // add event listener for answer selection
+// // }
+// console.log(listenForAnswer);
+
+// function toNextQuestion () {
+//     if (listenForAnswer == questions[i].answer) {
+//         score++
+//     }
+// }
+// console.log(score);
+// console.log(listenForAnswer);
+
