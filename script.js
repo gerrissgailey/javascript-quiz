@@ -70,76 +70,35 @@ function updateScore() {
         score += 10;
         currentScore.textContent = score;
         console.log(score);
-
-    }
-    // selectedOption.checked = false;
+        // alert("Correct! + 10 Points!");
+    } else {
+        // if (questions[currentQuestion].answer == !selectedOption) {
+            score -= 5;
+            currentScore.textContent = score;
+            count -= 5;
+        }
     if (currentQuestion == totalQuestions - 1) {
-        nextButton.textContent = 'Finish';
-    }
-    if (currentQuestion == totalQuestions) {
-        endScore.style.display = 'none';
-        resultCont.style.display = '';
-        resultCont.textContent = 'Your Score: ' + score;
+        questionsEl.setAttribute("class", "hide");
+        endScore.setAttribute("class", "show");
+        endScore.textContent = 'Your Score: ' + score;
+        clearInterval(timer);
         return;
     }
+    // console.log(questionsEl);
+    // console.log(endScore);
     currentQuestion++;
     loadNextQuestion();
 }
+
 console.log(score);
 console.log(totalQuestions);
-// startQuestions(currentQuestion);
-
-
-
+    // startQuestions(currentQuestion);
+    
+    
+    
 loadNextQuestion();
 // add event listener on start
 generateBtn.addEventListener("click", setStage);
 
 
-
-
-
-
-
-//     for (var i = 0; i < questions.length; i++) {
-//         // var displayQuestion = document.getElementById("question")
-//         displayQuestion = (questions[i].title);
-//         // console.log(displayQuestion);
-//         // if (askQuestion == questions[i].answer) {
-//             // score++;var startQ = questions[i];
-//         // console.log(startQ);
-
-
-//         displayQuestion.textContent = (displayQuestion[i]);
-//         console.log(displayQuestion);
-//         // }    
-//         ans1.textContent = questions[i].choices[i];
-//         console.log(ans1);
-//         // ans2.textContent = questions[i].choices[1];
-//         // ans3.textContent = questions[i].choices[2];
-//         // ans4.textContent = questions[i].choices[3];        
-//     }
-// };
-
-// var selectedOption = document.querySelector('input[type=button]:onclick');
-
-
-
-
-// var listenForAnswer = document.querySelectorAll("button[type=button]")
-// console.log(listenForAnswer);
-
-// // for (var i = 0; i < listenForAnswer.length; i++) {
-// listenForAnswer.forEach.addEventListener("click", toNextQuestion);
-// // add event listener for answer selection
-// // }
-// console.log(listenForAnswer);
-
-// function toNextQuestion () {
-//     if (listenForAnswer == questions[i].answer) {
-//         score++
-//     }
-// }
-// console.log(score);
-// console.log(listenForAnswer);
 

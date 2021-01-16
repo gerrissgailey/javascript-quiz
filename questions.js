@@ -17,11 +17,11 @@ var questions = [
     },
     {
         "question": "Inside which HTML element do we put the JavaScript?",
-        "choice1": "<js>",
-        "choice2": "<scripting>",
-        "choice3": "<script>",
-        "choice4": "<javascript",
-        "answer": "<script>"
+        "choice1": "js",
+        "choice2": "scripting",
+        "choice3": "script",
+        "choice4": "javascript",
+        "answer": "script"
     },
     {
         "question": "Using _______ statement is how you test for a specific condition.",
