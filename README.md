@@ -36,4 +36,4 @@ The live deployment of this application can be found by [Clicking Here](https://
 
 ## Authors
 ---
-* Gerriss Gailey - JavaScript code
+* Gerriss Gailey
