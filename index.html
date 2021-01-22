@@ -1,18 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JavaScript Quiz</title>
-    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-    <div id ="time-div">
-        Time: <span id ="display-time"></span> 
+    <div id="time-div">
+        Time: <span id="display-time"></span>
     </div>
-    <div id ="start-screen" class="show">
+    <div>
+        Score: <span id="current-score"></span>
+    </div>
+    <div id="start-screen" class="show">
         <h2>JavaScript Quiz</h2>
-            <button id="start">Start</button>
+        <button id="start">Start</button>
+        <button id ="view-scores">View High Scores</button>
     </div>
     <div id="quiz" class="hide">
         <h1 id="question"></h1>
@@ -20,15 +26,39 @@
         <button id="answer2" class="ans"></button>
         <button id="answer3" class="ans"></button>
         <button id="answer4" class="ans"></button>
-
-        <div>
-            Score: <span id="current-score"></span>
+    </div>
+    <div id="final-score" class="hide">
+        <div id="user-initials">
+            <h2>Enter Your Initials To Record Your Score.</h2>
+            <form method="POST">
+                <div class="input-group">
+                    <label for="initials">Type Your Initials Here:</label>
+                    <input type="text" name="initials" id="initials" placeholder="YO" />
+                </div>
+                <button id="submit">Submit</button>
+            </form>
         </div>
     </div>
-    <div id="final-score" class="hide"></div>
-    <div></div>
-    <div></div>
+
+    <div id="high-scores" class="hide" class="card">
+        <h2>High Scores</h2>
+        <div class="grid-container">
+            <div>
+                <strong>User Initials:</strong> <span id="initials-stored"></span>
+            </div>
+            <div>
+                <strong>Score:</strong> <span id="score-stored"></span>
+            </div>
+        </div>
+        <br>
+        <div>
+            <button id="back-start">Back to Start</button>
+            <button id ="reset-scores">Reset High Scores</button>
+        </div>
+    </div>
+
     <script src="questions.js"></script>
     <script src="script.js"></script>
 </body>
+
 </html>
